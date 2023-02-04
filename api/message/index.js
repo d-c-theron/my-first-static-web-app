@@ -1,5 +1,11 @@
+var azure = require('azure-storage');
+
 module.exports = async function (context, req) {
-    context.res.json({
-        text: "Hello from the changed API - 03/02"
-    });
+    var tableSvc = azure.createTableService();
+    tableSvc.retrieveEntity('Articles', '2023-02-04', 'PoolOfTheDay', function(error, result, response){
+        if(!error){
+          // result contains the entity
+          context.res.result;
+        }
+      });    
 };
